@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}POSTS LIST{% endblock title %}
+{% block header_image %}posts.webp{% endblock header_image %}
+{% block header_title %}Posts List{% endblock header_title %}
+{% block content %}
+    {% for post in posts  %}
+        <article class = "post">
+            <h2>{{post.title}}</h2>
+            <p>{{post.date}}</p>
+            <p>{{post.body}}</p>
+        </article>
+    {% endfor %}
+{% endblock content %}
