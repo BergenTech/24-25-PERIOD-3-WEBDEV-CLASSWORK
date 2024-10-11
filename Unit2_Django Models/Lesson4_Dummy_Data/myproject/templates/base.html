@@ -41,7 +41,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="{% static 'assets/blog/' %}{%block header_image%}{%endblock header_image%}" alt="..." />
+                {% block header_image %}{% endblock header_image %}
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">{% block header_title %}{% endblock header_title %}</h1>
                 <!-- Icon Divider-->

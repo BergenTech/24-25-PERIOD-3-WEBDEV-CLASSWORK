@@ -9,6 +9,11 @@
 <link rel="stylesheet" href="{%static 'css/posts.css'%}">
 {% endblock head %}
 
+{% load static %}
+{% block header_image %}
+<img src="{{post.banner.url}}" alt="{{post.title}}">
+{% endblock header_image %}
+
 {% block header_title %}
 {{post.title}}
 {% endblock header_title %}
