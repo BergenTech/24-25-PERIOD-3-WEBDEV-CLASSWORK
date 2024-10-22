@@ -9,4 +9,9 @@
 
 {% block content %}   <!-- Define content block -->
     <h1>Register a New User</h1>  <!-- Heading text -->
+    <form action="/users/register/" method="POST">
+        {% csrf_token %} # security token Cross-site Request Forgery Attacks
+        {{form}}
+        <button>Submit</button>
+    </form>
 {% endblock content %}
