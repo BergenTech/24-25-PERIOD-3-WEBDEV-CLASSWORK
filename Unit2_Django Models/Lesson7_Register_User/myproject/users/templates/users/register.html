@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register a New User{% endblock title %}
+
+{% block header_image %}
+    <img src="{% static 'assets/blog/register.png' %}" alt="Register" width="200px" class="register-image">
+{% endblock header_image %}
+
+{% block content %}
+    <h1>Register a New User</h1>
+    <!-- Form posts to /users/register/ URL -->
+    <form action="/users/register/" method="post" class="p-4 border rounded bg-light text-dark">
+        {% csrf_token %}
+       
+        <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}" class="form-label ">Username</label>
+            {{ form.username }}
+        </div>
+       
+        <div class="mb-3">
+            <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+            {{ form.password1 }}
+        </div>
+       
+        <div class="mb-3">
+            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+            {{ form.password2 }}
+        </div>
+       
+        <button type="submit" class="btn btn-secondary mt-2">Submit</button>
+    </form>
+{% endblock content %}
+    
+    
+    
+    
+    
