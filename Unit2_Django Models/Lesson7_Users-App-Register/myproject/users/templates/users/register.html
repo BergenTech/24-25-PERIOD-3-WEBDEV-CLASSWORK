@@ -9,9 +9,24 @@
 
 {% block content %}   <!-- Define content block -->
     <h1>Register a New User</h1>  <!-- Heading text -->
-    <form action="/users/register/" method="POST">
-        {% csrf_token %} # security token Cross-site Request Forgery Attacks
-        {{form}}
+    <form action="/users/register/" method="POST" class="p-4 border rounded bg-light text-dark">
+        {% comment %} {% csrf_token %} # security token Cross-site Request Forgery Attacks {% endcomment %}
+        {% comment %} {{form}} {% endcomment %}
+        <div class="mb-3">
+         <label for="{{form.username.id_for_label}}">Username</label>
+         {{form.username}}   
+        </div>
+        <div class="mb-3">
+            <label for="{{form.password1.id_for_label}}">Password</label>
+            {{form.password1}}
+        </div>
+        <div class="mb-3">
+            <label for="{{form.password2.id_for_label}}">Password Confirmation</label>
+            {{form.password2}}
+        </div>
+        
+
+       
         <button>Submit</button>
     </form>
 {% endblock content %}
