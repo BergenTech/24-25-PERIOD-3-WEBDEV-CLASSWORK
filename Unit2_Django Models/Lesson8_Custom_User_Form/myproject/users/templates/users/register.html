@@ -1,0 +1,61 @@
+{% extends "base.html" %}  <!-- Extend the base template -->
+{% load static %}          <!-- Load static files -->
+
+{% block title %}Register a New User{% endblock title %}  <!-- Set the title -->
+
+{% block header_image %}
+    <img src="{% static 'assets/blog/register.png' %}" alt="Register" width="200px" class="register-image">  <!-- Add the image in the header_image block -->
+{% endblock header_image %}
+
+{% block content %}   <!-- Define content block -->
+    <h1>Register a New User</h1>  <!-- Heading text -->
+    <form action="/users/register/" method="POST" class="p-4 border rounded bg-light text-dark">
+        {% csrf_token %}{% comment %}  # security token Cross-site Request Forgery Attacks {% endcomment %}
+        {% comment %} {{form}} {% endcomment %}
+        {% comment %} Display Form Errors {% endcomment %}
+        {%if form.errors%}
+        <div class="alert alert-danger">
+            <ul>
+                {%for field in form%}
+                    {%if field.errors%}
+                        <li>{{field.label}}:{{field.errors}}</li>
+                    {%endif%}
+                {%endfor%}
+            </ul>
+        </div>
+        {%endif%}
+
+        <div class="mb-3">
+         <label for="{{form.username.id_for_label}}">Username</label>
+         {{form.username}}   
+        </div>
+        
+        <div class="mb-3">
+         <label for="{{form.email.id_for_label}}">Email</label>
+         {{form.email}}   
+        </div>
+
+        <div class="mb-3">
+         <label for="{{form.first_name.id_for_label}}">First Name</label>
+         {{form.first_name}}   
+        </div>
+
+        <div class="mb-3">
+         <label for="{{form.last_name.id_for_label}}">Last Name</label>
+         {{form.last_name}}   
+        </div>
+
+        <div class="mb-3">
+            <label for="{{form.password1.id_for_label}}">Password</label>
+            {{form.password1}}
+        </div>
+        <div class="mb-3">
+            <label for="{{form.password2.id_for_label}}">Password Confirmation</label>
+            {{form.password2}}
+        </div>
+        
+
+       
+        <button>Submit</button>
+    </form>
+{% endblock content %}
