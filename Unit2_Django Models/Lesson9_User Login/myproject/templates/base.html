@@ -34,7 +34,22 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded {% if active_link == 'about' %}active{% endif %}" href="/about">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded {% if active_link == 'posts' %}active{% endif %}" href="{% url 'posts:list' %}">Posts</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded {% if active_link == 'register' %}active{% endif %}" href="{% url 'users:register' %}">Register</a></li>
+                        
+                        
+
+                        {%if user.is_authenticated%}
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <form method="POST" action="{% url 'users:logout' %}">
+                                {% csrf_token %}
+                            <button type="submit" class="nav-link py-3 px-0 px-lg-3 rounded">
+                                Logout
+                            </button>
+                            </form>
+                        </li>
+                        {%else%}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded {% if active_link == 'login' %}active{% endif %}" href="{% url 'users:login' %}">Login</a></li>
+                        {%endif%}
+
                     </ul>
                 </div>
             </div>

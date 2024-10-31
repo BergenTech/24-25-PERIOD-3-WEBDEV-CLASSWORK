@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import CustomUserCreationForm
+from django.contrib.auth import login, logout
 
 def register(request):
     #Check if the form is submitted
@@ -8,7 +9,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST) #submitted with data
         #validate the form
         if form.is_valid():
-            form.save()
+            login(request, form.save())
             return redirect("posts:list")
     else: #Get method
         form = CustomUserCreationForm()
@@ -23,6 +24,7 @@ def login_view(request):
         form = AuthenticationForm(data = request.POST)
         if form.is_valid():
             #LOGIN HERE
+            login(request, form.get_user())
             return redirect("posts:list")
     else:
         form = AuthenticationForm()
@@ -32,3 +34,8 @@ def login_view(request):
         
     context = {"active_link":"login", 'form':form}
     return render(request, "users/login.html", context)
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect("posts:list")
