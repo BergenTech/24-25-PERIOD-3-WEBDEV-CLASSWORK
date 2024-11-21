@@ -5,13 +5,14 @@
 <link rel="stylesheet" href="{%static 'css/posts.css'%}">
 {% endblock head %}
 {% block header_image %}
-<a href="#">
+<a href="{% url 'posts:new-post'%}">
 <img src="{%static 'assets/blog/newpost.png'%}" width="25%" alt="">    
 </a>
 <img class="masthead-avatar mb-5" src="{% static 'assets/blog/posts.webp' %}" alt="..." />
 {% endblock header_image %}
 {% block header_title %}Posts List{% endblock header_title %}
 {% block content %}
+<div class="container p-4 border rounded bg-light text-dark mx-auto text-center" style="max-width: 600px;">
 <div class="row justify-content-center">
     {% for post in posts  %}
         <div class="col-md-8">
@@ -21,10 +22,11 @@
                 {{post.title}}
                 </a>
             </h2>
-            <p class="post-date">{{post.date}}</p>
+            <p class="post-date">{{post.date}} by {{post.author}}</p>
             <p class="post-body">{{post.body}}</p>
         </article>
         </div>
     {% endfor %}
+</div>
 </div>
 {% endblock content %}

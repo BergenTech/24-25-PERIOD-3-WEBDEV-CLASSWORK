@@ -10,14 +10,13 @@
 {% endblock header_image %}
 {% block header_title %}{{post.title}}{% endblock header_title %}
 {% block content %}
-<div class="row justify-content-center">
+<div class="container p-4 border rounded bg-light text-dark mx-auto text-center" style="max-width: 600px;">
 
         <div class="col-md-8">
         <article class = "post bg-light p-4 mb-4 rounded shadow-sm">
-            <p class="post-date">{{post.date}}</p>
+            <p class="post-date">{{post.date}} by {{post.author}}</p>
             <p class="post-body">{{post.body}}</p>
         </article>
         </div>
-
 </div>
 {% endblock content %}

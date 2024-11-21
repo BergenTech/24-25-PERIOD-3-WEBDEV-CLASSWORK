@@ -1,16 +1,16 @@
 {% extends "base.html" %}  <!-- Extend the base template -->
 {% load static %}          <!-- Load static files -->
 
-{% block title %}Login User{% endblock title %}  <!-- Set the title -->
+{% block title %}New Post{% endblock title %}  <!-- Set the title -->
 
 {% block header_image %}
-    <img src="{% static 'assets/blog/login.png' %}" alt="Register" width="200px" class="register-image">  <!-- Add the image in the header_image block -->
+<h1 class="text-center">New Post</h1>
 {% endblock header_image %}
 
 {% block content %}
-    <h1 class="text-center">Login User</h1>
-    <div class="container p-4 border rounded bg-light text-dark mx-auto text-center" style="max-width: 400px;">
-        <form action="/users/login/" method="post">
+    
+    <div class="container p-4 border rounded bg-light text-dark mx-auto text-center" style="max-width: 600px;">
+        <form action="{%url 'posts:new-post'%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!-- Display form errors -->
@@ -30,21 +30,35 @@
             {% endif %}
 
             <div class="mb-3 text-center">
-                <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
                 <div class="col-sm-6 mx-auto">
-                    {{ form.username }}
+                    {{ form.title }}
                 </div>
             </div>
 
             <div class="mb-3 text-center">
-                <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+                <label for="{{ form.body.id_for_label }}" class="form-label">Body</label>
                 <div class="col-sm-6 mx-auto">
-                    {{ form.password }}
+                    {{ form.body }}
+                </div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <label for="{{ form.slug.id_for_label }}" class="form-label">Slug</label>
+                <div class="col-sm-6 mx-auto">
+                    {{ form.slug }}
+                </div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <label for="{{ form.banner.id_for_label }}" class="form-label">Banner</label>
+                <div class="col-sm-6 mx-auto">
+                    {{ form.banner }}
                 </div>
             </div>
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-secondary">Login</button>
+                <button type="submit" class="btn btn-secondary">Add Post</button>
             </div>
 
         </form>
