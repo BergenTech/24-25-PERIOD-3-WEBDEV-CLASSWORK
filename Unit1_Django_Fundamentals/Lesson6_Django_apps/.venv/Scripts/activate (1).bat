@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\Google Drive\24-25\_Courses\3-Advanced Programming\code\24-25-PERIOD-3-WEBDEV-CLASSWORK\Unit1_Django_Fundamentals\Lesson6_Django_apps\.venv
+set VIRTUAL_ENV=d:\Google Drive\24-25\_Courses\3-Advanced Programming\code\24-25-PERIOD-3-WEBDEV-CLASSWORK\Unit1_Django_Fundamentals\Lesson6_Django_template_language\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 
