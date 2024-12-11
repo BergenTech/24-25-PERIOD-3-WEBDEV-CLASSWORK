@@ -1,8 +1,7 @@
 # Ignore VSCode settings
 .vscode/
 
-# Ignore virtual environment inside Lesson3 directory
-Lesson3/venv/
+.venv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
