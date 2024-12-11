@@ -1,6 +1,6 @@
 # Ignore VSCode settings
 .vscode/
-
+.env
 .venv/
 
 # Byte-compiled / optimized / DLL files
