@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'pages',
     'listings',
     'realtors',
-     
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
+        'NAME': 'btre_backup',
         'USER': 'avnadmin',
         'PASSWORD': DB_PASSWORD,
         'HOST': DB_HOST,
