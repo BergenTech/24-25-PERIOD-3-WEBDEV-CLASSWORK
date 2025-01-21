@@ -103,6 +103,19 @@
                </li>
                {% endif %}
               <!-- Previous page button end -->
+              <!-- Loop through pages START -->
+               {% for i in listings.paginator.page_range %}
+               {% if listings.number == i %}
+               <li class="page-item active">
+                  <a class="page-link">{{i}}</a>
+               </li>
+               {%else%}
+               <li class="page-item">
+                <a class="page-link" href="?page={{i}}">{{i}}</a>
+             </li>
+               {% endif %}
+               {% endfor %}
+              <!-- Loop through pages END -->
               <!-- Next page button start -->
                {% if listings.has_next %}
                <li class="page-item">
