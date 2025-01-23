@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Listing
 from django.core.paginator import Paginator
+from .choices import price_choices, bedroom_choices, state_choices
+from .models import Listing
+
 
 # Create your views here.
 def index(request):
@@ -21,4 +24,11 @@ def listing(request, listing_id):
     return render(request, 'listings/listing.html',context)
     
 def search(request):
-    return render(request, 'listings/search.html')
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
+    context = {
+        'listings': listings,
+        'state_choices': state_choices,
+        'bedroom_choices': bedroom_choices,
+        'price_choices': price_choices,
+    }
+    return render(request, 'listings/search.html',context)
