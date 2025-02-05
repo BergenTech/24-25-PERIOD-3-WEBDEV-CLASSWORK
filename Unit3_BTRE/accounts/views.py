@@ -1,12 +1,22 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def login(request):
     if request.method == "POST":
         #Login User
-        return
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password )
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, "You are successfully logged in")
+            return redirect("dashboard")
+        else:
+            messages.error(request, "Invalid Credentials! Try Again!")
+            return redirect("login")
     else:
         return render(request, 'accounts/login.html')
 
