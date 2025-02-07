@@ -12,7 +12,7 @@ def login(request):
         user = authenticate(request, username=username, password=password )
         if user is not None:
             auth.login(request, user)
-            messages.success(request, "You are successfully logged in")
+            messages.success(request, "You are successfully logged in!")
             return redirect("dashboard")
         else:
             messages.error(request, "Invalid Credentials! Try Again!")
