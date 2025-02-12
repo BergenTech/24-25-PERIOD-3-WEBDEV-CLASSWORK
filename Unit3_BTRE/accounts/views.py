@@ -12,7 +12,7 @@ def login(request):
         user = authenticate(request, username=username, password=password )
         if user is not None:
             auth.login(request, user)
-            messages.success(request, "You are successfully logged in")
+            messages.success(request, "You are successfully logged in!")
             return redirect("dashboard")
         else:
             messages.error(request, "Invalid Credentials! Try Again!")
@@ -21,7 +21,13 @@ def login(request):
         return render(request, 'accounts/login.html')
 
 def logout(request):
-    return render(request, 'accounts/logout.html')
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request, "You are now logged out!")
+        return redirect("index")
+    # else:
+    #     messages.error(request, "You have to login first!")
+    #     return redirect("index")
 
 def register(request):
     if request.method == "POST":
