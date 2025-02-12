@@ -19,10 +19,10 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
+            <a href="{% url 'index' %}">Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="listings.html">Listings</a>
+            <a href="{% url 'listings' %}">Listings</a>
           </li>
           <li class="breadcrumb-item active">42 Drivewood Circle</li>
         </ol>
@@ -33,7 +33,7 @@
   <!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
-      <a href="listings.html" class="btn btn-light mb-4">Back To Listings</a>
+      <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
@@ -165,14 +165,26 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+              <input type="hidden" name="user_id" value="{{ user.id}}">
+            {% else %}
+            <input type="hidden" name="user_id" value="0">
+            {% endif %}
+            <input type="hidden" name="realtor_email" value="{{ listing.realtor.email }}">
+            <input type="hidden" name="listing_id" value="{{ listing.id }}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+              <input type="text" name="listing" class="form-control" value="{{ listing.title }}" disabled>
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Name:</label>
-              <input type="text" name="name" class="form-control" required>
+              <input type="text" name="name" class="form-control" 
+              {% if user.is_authenticated %}
+              value="{{ user.first_name }} {{ user.last_name }}"
+              {%endif%}
+              required>
             </div>
             <div class="form-group">
               <label for="email" class="col-form-label">Email:</label>
